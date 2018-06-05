@@ -2,11 +2,11 @@
   <div class="row">
     <div class="input-group" v-if="!item.stat">
       <div class="input-group-prepend">
-        <button class="btn btn-outline-secondary" type="button" v-on:click="ToDoItem_complete">Готово</button>
+        <button class="btn btn-outline-secondary" type="button" @click="ToDoItem_complete">Готово</button>
       </div>
       <textarea class="form-control" aria-label="With textarea" v-model="item.text"></textarea>
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" v-on:click="ToDoItem_delete">Удалить задачу</button>
+        <button class="btn btn-outline-secondary" type="button" @click="ToDoItem_delete">Удалить задачу</button>
       </div>
     </div>
     <div class="alert alert-success" role="alert" v-if="item.stat">
@@ -26,7 +26,7 @@ export default Vue.extend({
       this.item.stat = true
     },
     ToDoItem_delete: function () {
-      //this.item = null
+      // this.item = null
     }
   }
 })

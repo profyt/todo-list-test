@@ -4,10 +4,10 @@
     <div class="container">
       <ToDoItem
         v-for="item in items"
-        v-bind:item="item"
-        v-bind:key="item.id">
+        :item="item"
+        :key="item.id">
       </ToDoItem>
-      <AddToDoItem v-bind:items="items"/>
+      <AddToDoItem :items="items"/>
     </div>
   </div>
 </template>
@@ -19,17 +19,8 @@ import AddToDoItem from '@/components/AddToDoItem.vue'
 
 export default Vue.extend({
   name: 'ToDoList',
-  props: ['msg'],
+  props: ['msg', 'items'],
   components: {ToDoItem, AddToDoItem},
-  data () {
-    return {
-      items: [
-        { id: 0, text: 'Овощи', stat: true },
-        { id: 1, text: 'Сыр', stat: true },
-        { id: 2, text: 'Что там ещё люди едят?', stat: false }
-      ]
-    }
-  },
   methods: {
   }
 })

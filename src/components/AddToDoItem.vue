@@ -2,7 +2,7 @@
   <div class="row">
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary" type="button" v-on:click="ToDoList_AddItem">Добавить</button>
+            <button class="btn btn-outline-secondary" type="button" @click="ToDoList_AddItem">Добавить</button>
         </div>
         <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" v-model="text">
     </div>
@@ -17,7 +17,7 @@ export default Vue.extend({
   props: ['items'],
   methods: {
     ToDoList_AddItem: function () {
-      this.items = new Object()
+      // this.items = new Object()
     }
   }
 })
