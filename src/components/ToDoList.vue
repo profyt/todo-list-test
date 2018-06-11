@@ -7,7 +7,7 @@
         :item="item"
         :key="item.id">
       </ToDoItem>
-      <AddToDoItem :items="items"/>
+      <AddToDoItem @additem="ToDoListAddItem"/>
     </div>
   </div>
 </template>
@@ -19,9 +19,21 @@ import AddToDoItem from '@/components/AddToDoItem.vue'
 
 export default Vue.extend({
   name: 'ToDoList',
-  props: ['msg', 'items'],
+  props: ['msg', 'items', 'NewToDo'],
   components: {ToDoItem, AddToDoItem},
+  data () {
+    return {
+      NewToDo: ''
+    }
+  },
   methods: {
+    ToDoListAddItem: function (NewToDo: object) {
+      this.items.push({
+        id: '',
+        text: NewToDo.text,
+        stat: NewToDo.stat
+      })
+    }
   }
 })
 </script>

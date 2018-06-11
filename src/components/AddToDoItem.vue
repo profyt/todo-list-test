@@ -4,7 +4,7 @@
         <div class="input-group-prepend">
             <button class="btn btn-outline-secondary" type="button" @click="ToDoList_AddItem">Добавить</button>
         </div>
-        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" v-model="text">
+        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" v-model="AddItemText">
     </div>
   </div>
 </template>
@@ -14,10 +14,20 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'AddTodoItem',
-  props: ['items'],
+  props: [],
+  data () {
+    return {
+      AddItemText: ''
+    }
+  },
   methods: {
     ToDoList_AddItem: function () {
-      // this.items = new Object()
+      var value = this.AddItemText && this.AddItemText.trim()
+      if (!value) {
+        return
+      }
+      this.$emit('additem', {text: value, stat: false})
+      this.AddItemText = ''
     }
   }
 })
