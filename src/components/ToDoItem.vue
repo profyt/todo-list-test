@@ -1,16 +1,20 @@
 <template>
   <div class="row">
     <div class="input-group" v-if="!item.stat">
-      <div class="input-group-prepend">
-        <button class="btn btn-outline-secondary" type="button" @click="ToDoItem_complete">Готово</button>
-      </div>
       <textarea class="form-control" aria-label="With textarea" v-model="item.text"></textarea>
       <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" @click="ToDoItem_complete">Готово</button>
         <button class="btn btn-outline-secondary" type="button" @click="ToDoItem_delete">Удалить задачу</button>
       </div>
     </div>
-    <div class="alert alert-success" role="alert" v-if="item.stat">
-      {{item.text}}
+    <div  class="input-group"  v-if="item.stat">
+      <div class="alert alert-success" role="alert">
+        {{item.text}}
+      </div>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" @click="ToDoItem_not_complete">Не готово</button>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -23,7 +27,10 @@ export default Vue.extend({
   props: ['item'],
   methods: {
     ToDoItem_complete: function () {
-      this.item.stat = true
+      this.$emit('itemcomplete', {id: this.item.id, stat: true})
+    },
+    ToDoItem_not_complete: function () {
+      this.$emit('item-not-complete', {id: this.item.id, stat: false})
     },
     ToDoItem_delete: function () {
       // this.item = null
@@ -34,18 +41,12 @@ export default Vue.extend({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+.alert{
+  margin: 0;
+  flex: 1 1 auto;
+  text-align: left;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.input-group{
+  margin-bottom: 10px;
 }
 </style>

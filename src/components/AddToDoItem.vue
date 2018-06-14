@@ -29,6 +29,7 @@ export default Vue.extend({
       this.$emit('additem', {text: value, stat: false})
       this.AddItemText = ''
     }
+    
   }
 })
 </script>

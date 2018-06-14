@@ -3,9 +3,11 @@
     <h1>{{ msg }}</h1>
     <div class="container">
       <ToDoItem
-        v-for="item in items"
+        v-for="item in newitems"
         :item="item"
-        :key="item.id">
+        :key="item.id"
+        @itemcomplete="ToDoItemComplete"
+        @item-not-complete="ToDoItemNotComplete">
       </ToDoItem>
       <AddToDoItem @additem="ToDoListAddItem"/>
     </div>
@@ -16,23 +18,33 @@
 import Vue from 'vue'
 import ToDoItem from '@/components/ToDoItem.vue'
 import AddToDoItem from '@/components/AddToDoItem.vue'
+import { isArray } from 'util';
 
 export default Vue.extend({
   name: 'ToDoList',
-  props: ['msg', 'items', 'NewToDo'],
+  props: ['msg', 'items'],
   components: {ToDoItem, AddToDoItem},
   data () {
     return {
-      NewToDo: ''
+      NewToDo: '',
+      newitems: JSON.parse(JSON.stringify(this.items))
     }
   },
+  watch: {
+  
+  },
   methods: {
-    ToDoListAddItem: function (NewToDo: object) {
-      this.items.push({
-        id: '',
+    ToDoListAddItem: function (NewToDo: any) {
+      this.newitems.push({
         text: NewToDo.text,
         stat: NewToDo.stat
       })
+    },
+    ToDoItemComplete: function (CompleteItem: any) {
+      this.newitems[CompleteItem.id].stat = CompleteItem.stat
+    },
+    ToDoItemNotComplete: function (CompleteItem: any) {
+      this.newitems[CompleteItem.id].stat = CompleteItem.stat
     }
   }
 })
