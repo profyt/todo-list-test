@@ -14,7 +14,6 @@
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button" @click="ToDoItem_not_complete">Не готово</button>
       </div>
-      
     </div>
   </div>
 </template>

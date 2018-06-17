@@ -9,33 +9,41 @@
         @itemcomplete="ToDoItemComplete"
         @item-not-complete="ToDoItemNotComplete">
       </ToDoItem>
-      <AddToDoItem @additem="ToDoListAddItem"/>
+      <AddToDoItem @additem="ToDoListAddItem"></AddToDoItem>
+      <ToDoListStat :items="this.items" :newitems="this.newitems"></ToDoListStat>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Lodash from 'lodash'
 import ToDoItem from '@/components/ToDoItem.vue'
 import AddToDoItem from '@/components/AddToDoItem.vue'
-import { isArray } from 'util';
+import ToDoListStat from '@/components/ToDoListStat.vue'
 
 export default Vue.extend({
   name: 'ToDoList',
   props: ['msg', 'items'],
-  components: {ToDoItem, AddToDoItem},
+  components: {ToDoItem, AddToDoItem, ToDoListStat},
   data () {
     return {
       NewToDo: '',
-      newitems: JSON.parse(JSON.stringify(this.items))
+      newitems: []
     }
   },
   watch: {
-  
+    items (newVal, oldVal) {
+      this.newitems = Lodash.cloneDeep(this.items)
+    }
+  },
+  mounted: function () {
+    this.newitems = Lodash.cloneDeep(this.items)
   },
   methods: {
     ToDoListAddItem: function (NewToDo: any) {
       this.newitems.push({
+        id: Lodash.size(this.newitems),
         text: NewToDo.text,
         stat: NewToDo.stat
       })
