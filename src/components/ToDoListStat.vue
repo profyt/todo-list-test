@@ -1,8 +1,8 @@
 <template>
-  <div class="row ToDoStat">
-    <span class="ToDoStat_Item badge badge-primary">Всего задач <span class="badge badge-pill badge-light">{{SumOfItems}}</span></span>
-    <span class="ToDoStat_Item badge badge-secondary">Добавлено новых задач <span class="badge badge-pill badge-light">{{AddItems}}</span></span>
-    <span class="ToDoStat_Item badge badge-success">Выполненных задач <span class="badge badge-pill badge-light">{{CompleteItems}}</span></span>
+  <div class="row to-do-stat">
+    <span class="to-do-stat__item badge badge-primary">Всего задач <span class="to-do-stat__item-badge badge badge-pill badge-light">{{SumOfItems}}</span></span>
+    <span class="to-do-stat__item badge badge-secondary">Не выполненных задач <span class="badge badge-pill badge-light">{{InCompleteItems}}</span></span>
+    <span class="to-do-stat__item badge badge-success">Выполненных задач <span class="badge badge-pill badge-light">{{CompleteItems}}</span></span>
   </div>
 </template>
 
@@ -18,8 +18,8 @@ export default Vue.extend({
     SumOfItems: function () {
       return Lodash.size(this.newitems)
     },
-    AddItems: function () {
-      return Lodash.size(this.newitems)-Lodash.size(this.items)
+    InCompleteItems: function () {
+      return Lodash.size(Lodash.filter(this.newitems, ['stat', false]))
     },
     CompleteItems: function () {
       return Lodash.size(Lodash.filter(this.newitems, ['stat', true]))
@@ -30,10 +30,16 @@ export default Vue.extend({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.ToDoStat{
-  &_Item{
+.to-do-stat{
+  &__item{
+    font-size: 1em;
+    font-weight: normal;
     &:not(:last-child){
       margin-right: 10px;
+    }
+    &-badge{
+      margin-left: 5px;
+      font-weight: bold;
     }
   }
 }

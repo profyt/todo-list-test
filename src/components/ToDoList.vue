@@ -7,7 +7,8 @@
         :item="item"
         :key="item.id"
         @itemcomplete="ToDoItemComplete"
-        @item-not-complete="ToDoItemNotComplete">
+        @item-not-complete="ToDoItemNotComplete"
+        @item-delete="ToDoListDeleteItem">
       </ToDoItem>
       <AddToDoItem @additem="ToDoListAddItem"></AddToDoItem>
       <ToDoListStat :items="this.items" :newitems="this.newitems"></ToDoListStat>
@@ -47,6 +48,9 @@ export default Vue.extend({
         text: NewToDo.text,
         stat: NewToDo.stat
       })
+    },
+    ToDoListDeleteItem: function (DeleteItem: any) {
+      this.newitems = Lodash.filter(this.newitems, function(o) { return o.id != DeleteItem.id; })
     },
     ToDoItemComplete: function (CompleteItem: any) {
       this.newitems[CompleteItem.id].stat = CompleteItem.stat
