@@ -3,14 +3,10 @@ import App from './App.vue'
 import Vuex from 'vuex'
 import 'es6-promise/auto'
 import Lodash from 'lodash'
+
+
 Vue.use(Vuex);
 Vue.config.productionTip = false
-
-new Vue({
-  render: h => h(App)
-}).$mount('#app')
-
-
 const store = new Vuex.Store({
   state: {
     msg: 'Привет!',
@@ -41,3 +37,12 @@ const store = new Vuex.Store({
 
   }
 })
+
+
+
+new Vue({
+  render: h => h(App),
+  store
+}).$mount('#app')
+
+
