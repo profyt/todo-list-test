@@ -25,7 +25,7 @@ import ToDoListStat from '@/components/ToDoListStat.vue'
 
 export default Vue.extend({
   name: 'ToDoList',
-  props: ['msg'],
+  props: ['msg', 'newitems'],
   components: {ToDoItem, AddToDoItem, ToDoListStat},
   data () {
     return {
@@ -33,13 +33,10 @@ export default Vue.extend({
       newitems: []
     }
   },
-  watch: {
-    items (newVal, oldVal) {
-      this.newitems = Lodash.cloneDeep(this.$store.state.items)
+  computed:{
+    newitems(): object {
+      return this.$store.state.items;
     }
-  },
-  mounted: function () {
-    this.newitems = Lodash.cloneDeep(this.$store.state.items)
   },
   methods: {
     ToDoListAddItem: function (NewToDo: any) {

@@ -11,12 +11,7 @@ export default Vue.extend({
   components: {ToDoList},
   data () {
     return {
-      msg: 'Привет!',
-      items: [
-        { id: 0, text: 'Овощи', stat: true },
-        { id: 1, text: 'Сыр', stat: true },
-        { id: 2, text: 'Что там ещё люди едят?', stat: false }
-      ]
+      msg: 'Привет!'
     }
   },
   methods: {
