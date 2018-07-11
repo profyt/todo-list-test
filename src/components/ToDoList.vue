@@ -22,6 +22,7 @@ import Lodash from 'lodash'
 import ToDoItem from '@/components/ToDoItem.vue'
 import AddToDoItem from '@/components/AddToDoItem.vue'
 import ToDoListStat from '@/components/ToDoListStat.vue'
+import mapMutations from 'vuex'
 
 export default Vue.extend({
   name: 'ToDoList',
@@ -43,11 +44,7 @@ export default Vue.extend({
   },
   methods: {
     ToDoListAddItem: function (NewToDo: any) {
-      this.newitems.push({
-        id: Lodash.size(this.newitems),
-        text: NewToDo.text,
-        stat: NewToDo.stat
-      })
+      this.$store.commit('ToDoListAddItem', {NewToDo})
     },
     ToDoListDeleteItem: function (DeleteItem: any) {
       this.newitems = Lodash.filter(this.newitems, function(o) { return o.id != DeleteItem.id; })
