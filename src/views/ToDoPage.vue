@@ -1,5 +1,5 @@
 <template>
-  <ToDoList :msg="msg" :items="items"/>
+  <ToDoList :msg="msg"/>
 </template>
 
 <script lang="ts">

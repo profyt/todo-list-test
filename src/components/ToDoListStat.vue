@@ -12,7 +12,7 @@ import Lodash from 'lodash'
 
 export default Vue.extend({
   name: 'ToDoListStat',
-  props: ['items', 'newitems'],
+  props: ['newitems'],
 
   computed: {
     SumOfItems: function () {

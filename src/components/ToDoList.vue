@@ -11,7 +11,7 @@
         @item-delete="ToDoListDeleteItem">
       </ToDoItem>
       <AddToDoItem @additem="ToDoListAddItem"></AddToDoItem>
-      <ToDoListStat :items="this.items" :newitems="this.newitems"></ToDoListStat>
+      <ToDoListStat  :newitems="newitems"></ToDoListStat>
     </div>
   </div>
 </template>
@@ -25,12 +25,11 @@ import ToDoListStat from '@/components/ToDoListStat.vue'
 
 export default Vue.extend({
   name: 'ToDoList',
-  props: ['msg', 'newitems'],
+  props: ['msg'],
   components: {ToDoItem, AddToDoItem, ToDoListStat},
   data () {
     return {
-      NewToDo: '',
-      newitems: []
+      NewToDo: ''
     }
   },
   computed:{
