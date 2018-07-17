@@ -1,17 +1,18 @@
 <template>
   <div id="app">
+    <Navigation/>
     <img src="./assets/logo.png">
-    <ToDoPage/>
+    <router-view/>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import ToDoPage from '@/views/ToDoPage.vue'
-
+import Navigation from '@/components/Navigation.vue'
 export default Vue.extend({
   name: 'app',
-  components: {ToDoPage},
+  components: {ToDoPage,Navigation},
   methods: {
   }
 })
