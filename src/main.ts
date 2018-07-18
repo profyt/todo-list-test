@@ -7,8 +7,8 @@ import AddItemPage from '@/views/AddItemPage.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: ToDoPage },
-  { path: '/add', component: AddItemPage }
+  { path: '/', name: 'main', component: ToDoPage },
+  { path: '/edit/:TaskId', name: 'edit', component: AddItemPage }
 ]
 const router = new VueRouter({
   mode: 'history',

@@ -2,7 +2,9 @@
   <div id="app">
     <Navigation/>
     <img src="./assets/logo.png">
+    <transition name="component-fade" mode="out-in">
     <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -27,5 +29,14 @@ export default Vue.extend({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .3s ease,transform .3s ease;
+
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active до версии 2.1.8 */ {
+  transform: translateX(-50%);
+  opacity: 0;
 }
 </style>

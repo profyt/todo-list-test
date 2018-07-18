@@ -12,6 +12,7 @@
         {{item.text}}
       </div>
       <div class="input-group-append item-row__button-group">
+        <router-link class="btn btn-outline-secondary item-row__button_no-complete" :to="{ name: 'edit', params: { TaskId: item.id }}">Редактировать</router-link>
         <button class="btn btn-outline-secondary item-row__button_no-complete" type="button" @click="ToDoItem_not_complete">Не готово</button>
       </div>
     </div>

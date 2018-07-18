@@ -1,8 +1,13 @@
 <template>
   <div class="hello">
     <h1>Добавление Элемента</h1>
-    <div class="container">
-      <AddToDoItem @additem="ToDoListAddItem"></AddToDoItem>
+    {{ $route.params.TaskId }}
+    <div class="container" v-if="$route.params.TaskId=='new'">
+      <AddToDoItem @additem="ToDoListAddItem" ></AddToDoItem>
+    </div>
+    <div class="container" v-else>
+      dsadas
+      <AddToDoItem @additem="ToDoListAddItem" ></AddToDoItem>
     </div>
   </div>
 </template>

@@ -9,11 +9,11 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
         <li class="nav-item active">
-            <router-link to="/">Главная</router-link>
+            <router-link :to="{ name: 'main'}">Главная</router-link>
     
         </li>
         <li class="nav-item">
-            <router-link to="/add">Добавление</router-link>
+            <router-link :to="{ name: 'edit', params: { TaskId: 'new' }}">Добавление</router-link>
         </li>
         </ul>
     </div>
