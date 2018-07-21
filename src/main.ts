@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 
 const routes = [
   { path: '/', name: 'main', component: ToDoPage },
-  { path: '/edit/:TaskId', name: 'edit', component: AddItemPage }
+  { path: '/edit/:TaskId', name: 'edit', component: AddItemPage, props: (route) => ({TaskId: +route.params.TaskId}) }
 ]
 const router = new VueRouter({
   mode: 'history',
@@ -20,5 +20,3 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
-
-

@@ -10,9 +10,9 @@ export default new Vuex.Store({
   state: {
     msg: 'Привет!',
       items: [
-        { id: 0, text: 'Овощи', stat: true },
-        { id: 1, text: 'Сыр', stat: true },
-        { id: 2, text: 'Что там ещё люди едят?', stat: false }
+        { id: 0, text: 'Овощи', stat: true ,time: 10},
+        { id: 1, text: 'Сыр', stat: true ,time: 15},
+        { id: 2, text: 'Что там ещё люди едят?', stat: false ,time: 20}
       ]
   },
   mutations: {
@@ -20,7 +20,8 @@ export default new Vuex.Store({
       state.items.push({
         id: Lodash.size(state.items),
         text: NewToDo.text,
-        stat: NewToDo.stat
+        stat: NewToDo.stat,
+        time: NewToDo.time
       })
     },
     ToDoListDeleteItem: function (state, DeleteItem: any) {
@@ -31,6 +32,12 @@ export default new Vuex.Store({
     },
     ToDoItemNotComplete: function (state, CompleteItem: any) {
       state.items[CompleteItem.id].stat = CompleteItem.stat
+    },
+    ToDoItemSave(state, updatedItem: any){
+      const index = state.items.findIndex(item => item.id === updatedItem.id)
+      if (index !== -1){
+        state.items.splice(index, 1, updatedItem)
+      }
     }
 
 

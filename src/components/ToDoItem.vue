@@ -1,19 +1,22 @@
 <template>
   <div class="row item-row">
     <div class="input-group item-row__wrap" v-if="!item.stat">
-      <textarea class="form-control item-row__input" aria-label="With textarea" v-model="item.text"></textarea>
+      <div class="alert alert-info item-row__alert" role="alert">
+        {{item.text}}<span class="item_text-time">{{item.time}}</span>
+      </div>
       <div class="input-group-append item-row__button-group">
-        <button class="btn btn-outline-secondary item-row__button_complete" type="button" @click="ToDoItem_complete">Готово</button>
+        <router-link class="btn btn-outline-secondary item-row__button_no-complete" :to="{ name: 'edit', params: { TaskId: item.id }}">Редактировать</router-link>
+        <button class="btn btn-outline-secondary item-row__button_no-complete" type="button" @click="ToDoItem_complete">Готово</button>
         <button class="btn btn-outline-secondary item-row__button_delete" type="button" @click="ToDoItem_delete">Удалить задачу</button>
       </div>
     </div>
     <div  class="input-group item-row__wrap"  v-if="item.stat">
       <div class="alert alert-success item-row__alert" role="alert">
-        {{item.text}}
+        {{item.text}}<span class="item_text-time">{{item.time}}</span>
       </div>
       <div class="input-group-append item-row__button-group">
-        <router-link class="btn btn-outline-secondary item-row__button_no-complete" :to="{ name: 'edit', params: { TaskId: item.id }}">Редактировать</router-link>
         <button class="btn btn-outline-secondary item-row__button_no-complete" type="button" @click="ToDoItem_not_complete">Не готово</button>
+        <button class="btn btn-outline-secondary item-row__button_delete" type="button" @click="ToDoItem_delete">Удалить задачу</button>
       </div>
     </div>
   </div>
@@ -91,7 +94,12 @@ export default Vue.extend({
     }
   }
 }
-
+.item{
+  &_text-time{
+    font-weight: bold;
+    margin-left: 15px;
+  }
+}
 .input-group{
   margin-bottom: 10px;
 }
