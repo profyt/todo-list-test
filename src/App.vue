@@ -5,6 +5,7 @@
     <transition name="component-fade" mode="out-in">
     <router-view/>
     </transition>
+    <popup/>
   </div>
 </template>
 
@@ -12,9 +13,10 @@
 import Vue from 'vue'
 import ToDoPage from '@/views/ToDoPage.vue'
 import Navigation from '@/components/Navigation.vue'
+import popup from '@/components/popup.vue'
 export default Vue.extend({
   name: 'app',
-  components: {ToDoPage,Navigation},
+  components: {ToDoPage, Navigation, popup},
   methods: {
   }
 })

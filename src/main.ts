@@ -8,13 +8,16 @@ Vue.use(VueRouter)
 
 const routes = [
   { path: '/', name: 'main', component: ToDoPage },
-  { path: '/edit/:TaskId', name: 'edit', component: AddItemPage, props: (route) => ({TaskId: +route.params.TaskId}) }
+  { path: '/edit/:TaskId', name: 'edit', component: AddItemPage, props: (route) => ({TaskId: +route.params.TaskId, newTask: route.params.newTask}) }
 ]
 const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes
 })
+
+export const eventBus = new Vue()
+
 new Vue({
   router,
   store,

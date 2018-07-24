@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <h1>Добавление Элемента</h1>
-    {{ TaskId }}
-    <div class="container" v-if="TaskId === 'new'">
+    {{newTask}}
+    <div class="container" v-if="newTask === true">
       <AddToDoItem @additem="ToDoListAddItem" ></AddToDoItem>
     </div>
     <div class="container" v-else>
@@ -19,13 +19,18 @@ import Vue from 'vue'
 import AddToDoItem from '@/components/AddToDoItem.vue'
 import ToDoItemEdit from '@/components/ToDoItemEdit.vue'
 import Lodash from 'lodash'
+import eventBus from '@/main'
 
 export default Vue.extend({
   name: 'AddItemPage',
   props: {
     TaskId:{
-      type: [Number, String],
+      type: Number,
       default: 'new'
+    },
+    newTask:{
+      type: Boolean,
+      default:false
     }
   },
   components: {AddToDoItem,ToDoItemEdit},
@@ -37,10 +42,44 @@ export default Vue.extend({
   },
   methods: {
     ToDoListAddItem: function (NewToDo: any) {
-      this.$store.commit('ToDoListAddItem', NewToDo)
+      var value = NewToDo.text && NewToDo.text.trim()
+      if (!value) {
+        eventBus.$emit('popupOpen',{
+          typeMessage: {
+            type: Text,
+            value: 'alert'
+          },
+          message:{
+            type: Text,
+            value: 'Задача не может быть пустой!'
+          }
+        })
+        return
+      }
+      else{
+        this.$store.commit('ToDoListAddItem', NewToDo)
+      }
+      
     },
     SaveItem: function (SaveItem: any) {
-      this.$store.commit('ToDoItemSave', SaveItem)
+      var value = SaveItem.text && SaveItem.text.trim()
+      if (!value) {
+        eventBus.$emit('popupOpen',{
+          typeMessage: {
+            type: Text,
+            value: 'alert'
+          },
+          message:{
+            type: Text,
+            value: 'Задача не может быть пустой!'
+          }
+        })
+        return
+      }
+      else{
+        this.$store.commit('ToDoItemSave', SaveItem)
+      }
+      
     }
   }
 })
