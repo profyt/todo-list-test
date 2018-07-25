@@ -23,9 +23,6 @@ export default Vue.extend({
   methods: {
     ToDoList_AddItem: function () {
       var value = this.AddItemText && this.AddItemText.trim()
-      if (!value) {
-        return
-      }
       this.$emit('additem', {text: value, stat: false})
       this.AddItemText = ''
     }
