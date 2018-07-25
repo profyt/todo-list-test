@@ -1,8 +1,7 @@
 <template>
   <div class="hello">
     <h1>Добавление Элемента</h1>
-    {{newTask}}
-    <div class="container" v-if="newTask === true">
+    <div class="container" v-if="!TaskId">
       <AddToDoItem @additem="ToDoListAddItem" ></AddToDoItem>
     </div>
     <div class="container" v-else>
@@ -19,24 +18,20 @@ import Vue from 'vue'
 import AddToDoItem from '@/components/AddToDoItem.vue'
 import ToDoItemEdit from '@/components/ToDoItemEdit.vue'
 import Lodash from 'lodash'
-import eventBus from '@/main'
+import {eventBus} from '@/main'
 
 export default Vue.extend({
   name: 'AddItemPage',
   props: {
     TaskId:{
       type: Number,
-      default: 'new'
-    },
-    newTask:{
-      type: Boolean,
-      default:false
+      default: null
     }
   },
   components: {AddToDoItem,ToDoItemEdit},
   computed: {
     item () {
-      let find = this.$store.state.items.find(item => item.id === this.TaskId);
+      let find:any = this.$store.state.items.find((item: any) => item.id === this.TaskId);
       return find !== undefined ? Object.assign({}, find) : find;
     }
   },

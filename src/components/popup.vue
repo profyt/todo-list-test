@@ -22,21 +22,21 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import eventBus from '@/main'
+import {eventBus} from '@/main'
 
 export default Vue.extend({
     name: 'popup',
     data(){
         return {
             popupMessage:{
-                type: Text,
-                default: ''
+                type: Text
             }
         }
     },
     created(){
-        eventBus.$on('popupOpen', data =>{
-            this.popupMessage = data.message
+        eventBus.$on('popupOpen', (data:any) =>{
+            this.popupMessage = data.message.value
+            alert(data.message.value)
         } )
     }
 
