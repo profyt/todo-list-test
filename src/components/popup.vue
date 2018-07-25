@@ -1,9 +1,9 @@
 <template>
-<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" :class="classObject" :style="syleObject" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Читай внимательно</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -12,8 +12,7 @@
         {{popupMessage}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
       </div>
     </div>
   </div>
@@ -30,14 +29,27 @@ export default Vue.extend({
         return {
             popupMessage:{
                 type: Text
+            },
+            classObject:{
+              show: false
+            },
+            syleObject:{
+              display: 'none'
             }
         }
     },
     created(){
         eventBus.$on('popupOpen', (data:any) =>{
             this.popupMessage = data.message.value
-            alert(data.message.value)
+            this.classObject.show = true
+            this.syleObject.display = 'block'
         } )
+    },
+    methods:{
+      closeModal(){
+        this.classObject.show = false
+        this.syleObject.display = ''
+      }
     }
 
 })
