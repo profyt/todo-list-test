@@ -2,6 +2,7 @@
   <div class="row item-row">
     <div class="input-group item-row__wrap">
       <textarea class="form-control item-row__input" aria-label="With textarea" v-model="innerItem.text"></textarea>
+      <input type="number" class="form-control item-row__input" aria-label="With textarea" v-model="innerItem.time">
       <div class="input-group-append item-row__button-group">
         <button class="btn btn-outline-secondary item-row__button_no-complete" type="button" @click="toDoItemSave">Сохранить</button>
       </div>

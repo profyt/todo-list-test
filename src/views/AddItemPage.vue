@@ -37,8 +37,8 @@ export default Vue.extend({
   },
   methods: {
     ToDoListAddItem: function (NewToDo: any) {
-      var value = NewToDo.text && NewToDo.text.trim()
-      if (!value) {
+      
+      if (((!NewToDo.text)&&(NewToDo.time==0))||((!NewToDo.text)||(NewToDo.time==0))) {
         eventBus.$emit('popupOpen',{
           typeMessage: {
             type: Text,
@@ -46,7 +46,7 @@ export default Vue.extend({
           },
           message:{
             type: Text,
-            value: 'Задача не может быть пустой!'
+            value: 'Заполните все поля!'
           }
         })
         return
@@ -57,8 +57,7 @@ export default Vue.extend({
       
     },
     SaveItem: function (SaveItem: any) {
-      var value = SaveItem.text && SaveItem.text.trim()
-      if (!value) {
+      if (((!SaveItem.text)&&(SaveItem.time==0))||((!SaveItem.text)||(SaveItem.time==0))) {
         eventBus.$emit('popupOpen',{
           typeMessage: {
             type: Text,
@@ -66,7 +65,7 @@ export default Vue.extend({
           },
           message:{
             type: Text,
-            value: 'Задача не может быть пустой!'
+            value: 'Заполните все поля!'
           }
         })
         return

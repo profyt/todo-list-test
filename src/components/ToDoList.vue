@@ -10,7 +10,7 @@
         @item-not-complete="ToDoItemNotComplete"
         @item-delete="ToDoListDeleteItem">
       </ToDoItem>
-      <AddToDoItem @additem="ToDoListAddItem"></AddToDoItem>
+    <!--<AddToDoItem @additem="ToDoListAddItem"></AddToDoItem>-->
       <ToDoListStat  :newitems="newitems"></ToDoListStat>
     </div>
   </div>

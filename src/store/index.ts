@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import 'es6-promise/auto'
 import Lodash from 'lodash'
-
+import {eventBus} from '@/main'
+import moment, { Moment } from 'moment'
 
 Vue.use(Vuex);
 Vue.config.productionTip = false
@@ -23,6 +24,16 @@ export default new Vuex.Store({
         stat: NewToDo.stat,
         time: NewToDo.time
       })
+      eventBus.$emit('popupOpen',{
+        typeMessage: {
+          type: Text,
+          value: 'complete'
+        },
+        message:{
+          type: Text,
+          value: 'Добавлено!'
+        }
+      })
     },
     ToDoListDeleteItem: function (state, DeleteItem: any) {
       state.items = Lodash.filter(state.items, function(o) { return o.id != DeleteItem.id; })
@@ -37,7 +48,23 @@ export default new Vuex.Store({
       const index = state.items.findIndex(item => item.id === updatedItem.id)
       if (index !== -1){
         state.items.splice(index, 1, updatedItem)
+        let summTime:Number,
+        startDay:Moment
+        state.items.forEach((item)=>summTime = +item.time)
+        
+        startDay = moment()
+        
       }
+      eventBus.$emit('popupOpen',{
+        typeMessage: {
+          type: Text,
+          value: 'complete'
+        },
+        message:{
+          type: Text,
+          value: 'Сохранено!'
+        }
+      })
     }
 
 

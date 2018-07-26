@@ -12,6 +12,7 @@
         {{popupMessage}}
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" @click="closeModal();$router.push({name: 'main'}) " v-if='typeMessage==="complete"'>Здорово</button>
         <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
       </div>
     </div>
@@ -30,6 +31,9 @@ export default Vue.extend({
             popupMessage:{
                 type: Text
             },
+            typeMessage:{
+              type: Text
+            },
             classObject:{
               show: false
             },
@@ -41,6 +45,7 @@ export default Vue.extend({
     created(){
         eventBus.$on('popupOpen', (data:any) =>{
             this.popupMessage = data.message.value
+            this.typeMessage = data.typeMessage.value
             this.classObject.show = true
             this.syleObject.display = 'block'
         } )

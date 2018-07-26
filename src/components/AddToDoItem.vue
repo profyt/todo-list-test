@@ -4,7 +4,8 @@
         <div class="input-group-prepend">
             <button class="btn btn-outline-secondary" type="button" @click="ToDoList_AddItem">Добавить</button>
         </div>
-        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" v-model="AddItemText">
+        <input type="text" class="form-control" placeholder="Задача" aria-label="" aria-describedby="basic-addon1" v-model="AddItemText.value">
+        <input type="number" class="form-control" placeholder="Время на выполнение в минутах" aria-label="" aria-describedby="basic-addon1" v-model="AddItemTime.value">
     </div>
   </div>
 </template>
@@ -17,14 +18,21 @@ export default Vue.extend({
   props: [],
   data () {
     return {
-      AddItemText: ''
+      AddItemText:{
+        type: Text,
+        value:''
+      },
+      AddItemTime:{
+        type: Number,
+        value:0
+      }
     }
   },
   methods: {
     ToDoList_AddItem: function () {
-      var value = this.AddItemText && this.AddItemText.trim()
-      this.$emit('additem', {text: value, stat: false})
-      this.AddItemText = ''
+      let value = this.AddItemText.value && this.AddItemText.value.trim()
+      let time = this.AddItemTime.value
+      this.$emit('additem', {text: value, stat: false, time: time})
     }
   }
 })
