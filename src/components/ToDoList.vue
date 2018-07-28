@@ -55,7 +55,7 @@ export default Vue.extend({
       this.$store.commit('ToDoItemNotComplete', CompleteItem)
     },
     updatePosition (event:any){
-      this.$store.commit('sortItem', { oldIndex: event.oldIndex, nemIndex: event.newIndex})
+      this.$store.commit('sortItem', { oldIndex: event.oldIndex, newIndex: event.newIndex})
     }
   }
 })
