@@ -13,7 +13,8 @@ export default new Vuex.Store({
       items: [
         { id: 0, text: 'Овощи', stat: true ,time: 10},
         { id: 1, text: 'Сыр', stat: true ,time: 15},
-        { id: 2, text: 'Что там ещё люди едят?', stat: false ,time: 20}
+        { id: 2, text: 'Что там ещё люди едят?', stat: false ,time: 20},
+        { id: 3, text: 'Тащи меня полностью', stat: false ,time: 20}
       ]
   },
   mutations: {
@@ -65,6 +66,21 @@ export default new Vuex.Store({
           value: 'Сохранено!'
         }
       })
+    },
+    sortItem(state, sortInfo: any ){
+      let notCompleteItem = state.items.filter(item => !item.stat)
+      const tmp = notCompleteItem
+      const completeItem = state.items.filter(item => item.stat)
+      if(sortInfo.oldIndex > sortInfo.newIndex){
+        notCompleteItem.splice(sortInfo.newIndex,0, tmp[sortInfo.oldIndex])
+        notCompleteItem.splice(sortInfo.oldIndex+1, 1)
+        state.items = completeItem.concat(notCompleteItem)
+      }
+      else {
+        notCompleteItem.splice(sortInfo.newIndex,0, tmp[sortInfo.oldIndex])
+        notCompleteItem.splice(sortInfo.oldIndex, 1)
+        state.items = completeItem.concat(notCompleteItem)
+      }
     }
 
 

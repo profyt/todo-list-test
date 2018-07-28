@@ -2,14 +2,16 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <div class="container">
-      <ToDoItem
-        v-for="item in newitems"
-        :item="item"
-        :key="item.id"
-        @itemcomplete="ToDoItemComplete"
-        @item-not-complete="ToDoItemNotComplete"
-        @item-delete="ToDoListDeleteItem">
-      </ToDoItem>
+      <draggable :options="{draggable:'.drag-item'}" @end="updatePosition">
+        <ToDoItem
+          v-for="item in newitems"
+          :item="item"
+          :key="item.id"
+          @itemcomplete="ToDoItemComplete"
+          @item-not-complete="ToDoItemNotComplete"
+          @item-delete="ToDoListDeleteItem">
+        </ToDoItem>
+      </draggable>
     <!--<AddToDoItem @additem="ToDoListAddItem"></AddToDoItem>-->
       <ToDoListStat  :newitems="newitems"></ToDoListStat>
     </div>
@@ -22,19 +24,21 @@ import Lodash from 'lodash'
 import ToDoItem from '@/components/ToDoItem.vue'
 import AddToDoItem from '@/components/AddToDoItem.vue'
 import ToDoListStat from '@/components/ToDoListStat.vue'
+const draggable = require('vuedraggable')
+import {eventBus} from '@/main'
 
 export default Vue.extend({
   name: 'ToDoList',
   props: ['msg'],
-  components: {ToDoItem, AddToDoItem, ToDoListStat},
+  components: {ToDoItem, AddToDoItem, ToDoListStat, draggable},
   data () {
     return {
       NewToDo: ''
     }
   },
-  computed:{
-    newitems(): object {
-      return this.$store.state.items;
+  computed: {
+    newitems (): object {
+      return this.$store.state.items
     }
   },
   methods: {
@@ -49,6 +53,9 @@ export default Vue.extend({
     },
     ToDoItemNotComplete: function (CompleteItem: any) {
       this.$store.commit('ToDoItemNotComplete', CompleteItem)
+    },
+    updatePosition (event:any){
+      this.$store.commit('sortItem', { oldIndex: event.oldIndex, nemIndex: event.newIndex})
     }
   }
 })

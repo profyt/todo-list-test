@@ -1,5 +1,5 @@
 <template>
-  <div class="row item-row">
+  <div class="row item-row" :class="itemRowClass">
     <div class="input-group item-row__wrap" v-if="!item.stat">
       <div class="alert alert-info item-row__alert" role="alert">
         {{item.text}}<span class="item_text-time">{{item.time}}</span>
@@ -28,6 +28,13 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'ToDoItem',
   props: ['item'],
+  computed:{
+    itemRowClass (){
+      if(!this.item.stat){
+        return 'drag-item'
+      }
+    }
+  },
   methods: {
     ToDoItem_complete: function () {
       this.$emit('itemcomplete', {id: this.item.id, stat: true})

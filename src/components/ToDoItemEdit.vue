@@ -15,19 +15,19 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'ToDoItem',
   props: ['item'],
-  created() {
+  created () {
     this.innerItem = this.item
   },
-  data() {
+  data () {
     return {
       innerItem: {
         id: null,
-        text: '',
+        text: ''
       }
-    };
+    }
   },
   methods: {
-    toDoItemSave() {
+    toDoItemSave () {
       this.$emit('saveitem', this.innerItem)
     }
   }

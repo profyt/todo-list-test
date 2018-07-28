@@ -54,26 +54,24 @@ export default Vue.extend({
       else{
         this.$store.commit('ToDoListAddItem', NewToDo)
       }
-      
     },
     SaveItem: function (SaveItem: any) {
-      if (((!SaveItem.text)&&(SaveItem.time==0))||((!SaveItem.text)||(SaveItem.time==0))) {
-        eventBus.$emit('popupOpen',{
+      if (((!SaveItem.text) && (SaveItem.time == 0)) || ((!SaveItem.text) || (SaveItem.time == 0))) {
+        eventBus.$emit('popupOpen', {
           typeMessage: {
             type: Text,
             value: 'alert'
           },
-          message:{
+          message: {
             type: Text,
             value: 'Заполните все поля!'
           }
         })
         return
       }
-      else{
+      else {
         this.$store.commit('ToDoItemSave', SaveItem)
       }
-      
     }
   }
 })

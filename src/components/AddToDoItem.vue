@@ -18,13 +18,13 @@ export default Vue.extend({
   props: [],
   data () {
     return {
-      AddItemText:{
+      AddItemText: {
         type: Text,
-        value:''
+        value: ''
       },
-      AddItemTime:{
+      AddItemTime: {
         type: Number,
-        value:0
+        value: 0
       }
     }
   },
