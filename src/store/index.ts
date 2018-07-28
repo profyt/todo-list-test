@@ -67,18 +67,17 @@ export default new Vuex.Store({
         }
       })
     },
-    sortItem(state, sortInfo: any ){
+    sortItem(state, {oldIndex,newIndex} ){
       let notCompleteItem = state.items.filter(item => !item.stat)
-      const tmp = notCompleteItem
       const completeItem = state.items.filter(item => item.stat)
-      if(sortInfo.oldIndex > sortInfo.newIndex){
-        notCompleteItem.splice(sortInfo.newIndex,0, tmp[sortInfo.oldIndex])
-        notCompleteItem.splice(sortInfo.oldIndex+1, 1)
+      if(oldIndex > newIndex){
+        notCompleteItem.splice(newIndex,0, notCompleteItem[oldIndex])
+        notCompleteItem.splice(oldIndex+1, 1)
         state.items = completeItem.concat(notCompleteItem)
       }
       else {
-        notCompleteItem.splice(sortInfo.newIndex,0, tmp[sortInfo.oldIndex])
-        notCompleteItem.splice(sortInfo.oldIndex, 1)
+        notCompleteItem.splice(newIndex,0, notCompleteItem[oldIndex])
+        notCompleteItem.splice(oldIndex, 1)
         state.items = completeItem.concat(notCompleteItem)
       }
     }
