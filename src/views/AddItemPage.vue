@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>Добавление Элемента</h1>
-    <div class="container" v-if="!TaskId">
+    <div class="container" v-if="TaskId==undefined">
       <AddToDoItem @additem="ToDoListAddItem" ></AddToDoItem>
     </div>
     <div class="container" v-else>

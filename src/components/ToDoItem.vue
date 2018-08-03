@@ -12,7 +12,7 @@
     </div>
     <div  class="input-group item-row__wrap"  v-if="item.stat">
       <div class="alert alert-success item-row__alert" role="alert">
-        {{item.text}}<span class="item_text-time">{{item.time}}</span>
+        {{item.text}}<span class="item_text-time">{{item.time}}</span>/<span class="item_text-time-result" :class="completeTimeClass">{{item.resultTime}}</span>
       </div>
       <div class="input-group-append item-row__button-group">
         <button class="btn btn-outline-secondary item-row__button_no-complete" type="button" @click="ToDoItem_not_complete">Не готово</button>
@@ -32,6 +32,14 @@ export default Vue.extend({
     itemRowClass (){
       if(!this.item.stat){
         return 'drag-item'
+      }
+    },
+    completeTimeClass (){
+      if (this.item.resultTime <= 0){
+        return 'item_text-time-result--in-time'
+      }
+      else{
+        return 'item_text-time-result--over-time'
       }
     }
   },
@@ -105,6 +113,16 @@ export default Vue.extend({
   &_text-time{
     font-weight: bold;
     margin-left: 15px;
+    &-result{
+      margin-left: 5px;
+      font-weight: bold;
+      &--in-time{
+        color: #44b35d;
+      }
+      &--over-time{
+        color: red;
+      }
+    }
   }
 }
 .input-group{

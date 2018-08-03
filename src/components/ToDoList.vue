@@ -7,8 +7,8 @@
           v-for="item in newitems"
           :item="item"
           :key="item.id"
-          @itemcomplete="ToDoItemComplete"
-          @item-not-complete="ToDoItemNotComplete"
+          @itemcomplete="ToDoItemStat"
+          @item-not-complete="ToDoItemStat"
           @item-delete="ToDoListDeleteItem">
         </ToDoItem>
       </draggable>
@@ -48,11 +48,8 @@ export default Vue.extend({
     ToDoListDeleteItem: function (DeleteItem: any) {
       this.$store.commit('ToDoListDeleteItem', DeleteItem)
     },
-    ToDoItemComplete: function (CompleteItem: any) {
-      this.$store.commit('ToDoItemComplete', CompleteItem)
-    },
-    ToDoItemNotComplete: function (CompleteItem: any) {
-      this.$store.commit('ToDoItemNotComplete', CompleteItem)
+    ToDoItemStat: function (CompleteItem: any) {
+      this.$store.commit('ToDoItemStat', CompleteItem)
     },
     updatePosition (event:any){
       this.$store.commit('sortItem', { oldIndex: event.oldIndex, newIndex: event.newIndex})
