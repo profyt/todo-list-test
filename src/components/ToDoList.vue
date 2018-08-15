@@ -13,38 +13,29 @@
         </ToDoItem>
       </draggable>
     <!--<AddToDoItem @additem="ToDoListAddItem"></AddToDoItem>-->
-      <ToDoListStat  :newitems="newitems"></ToDoListStat>
+      
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import Lodash from 'lodash'
 import ToDoItem from '@/components/ToDoItem.vue'
 import AddToDoItem from '@/components/AddToDoItem.vue'
-import ToDoListStat from '@/components/ToDoListStat.vue'
+
 const draggable = require('vuedraggable')
 import {eventBus} from '@/main'
 
 export default Vue.extend({
   name: 'ToDoList',
-  props: ['msg'],
-  components: {ToDoItem, AddToDoItem, ToDoListStat, draggable},
+  props: ['msg','newitems'],
+  components: {ToDoItem, AddToDoItem, draggable},
   data () {
     return {
       NewToDo: ''
     }
   },
-  computed: {
-    newitems (): object {
-      return this.$store.state.items
-    }
-  },
   methods: {
-    ToDoListAddItem: function (NewToDo: any) {
-      this.$store.commit('ToDoListAddItem', NewToDo)
-    },
     ToDoListDeleteItem: function (DeleteItem: any) {
       this.$store.commit('ToDoListDeleteItem', DeleteItem)
     },

@@ -14,6 +14,7 @@ import Vue from 'vue'
 import ToDoPage from '@/views/ToDoPage.vue'
 import Navigation from '@/components/Navigation.vue'
 import popup from '@/components/popup.vue'
+
 export default Vue.extend({
   name: 'app',
   components: {ToDoPage, Navigation, popup},
@@ -24,6 +25,7 @@ export default Vue.extend({
 
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap";
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -1,5 +1,12 @@
 <template>
-<div class="modal fade" :class="classObject" :style="syleObject" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" 
+  :class="classObject" 
+  :style="syleObject" 
+  id="infoModal" 
+  tabindex="-1" 
+  role="dialog" 
+  aria-labelledby="exampleModalLabel" 
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,7 +19,7 @@
         {{popupMessage}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" @click="closeModal();$router.push({name: 'main'}) " v-if='typeMessage==="complete"'>Здорово</button>
+        <button type="button" class="btn btn-secondary" @click="returnOnMain" v-if='typeMessage==="complete"'>Здорово</button>
         <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
       </div>
     </div>
@@ -54,6 +61,10 @@ export default Vue.extend({
       closeModal(){
         this.classObject.show = false
         this.syleObject.display = ''
+      },
+      returnOnMain(){
+        this.closeModal()
+        this.$router.push({name: 'main'})
       }
     }
 

@@ -22,7 +22,8 @@ export default Vue.extend({
     return {
       innerItem: {
         id: null,
-        text: ''
+        text: '',
+        time: 0
       }
     }
   },

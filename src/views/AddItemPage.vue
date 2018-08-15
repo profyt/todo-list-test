@@ -36,10 +36,10 @@ export default Vue.extend({
     }
   },
   methods: {
-    ToDoListAddItem: function (NewToDo: any) {
+    ToDoListAddItem (NewToDo: any) {
       
-      if (((!NewToDo.text)&&(NewToDo.time==0))||((!NewToDo.text)||(NewToDo.time==0))) {
-        eventBus.$emit('popupOpen',{
+      if (((!NewToDo.text) && (NewToDo.time ===0)) || ((!NewToDo.text) || (NewToDo.time ===0))) {
+        return eventBus.$emit('popupOpen',{
           typeMessage: {
             type: Text,
             value: 'alert'
@@ -49,15 +49,13 @@ export default Vue.extend({
             value: 'Заполните все поля!'
           }
         })
-        return
+        
       }
-      else{
-        this.$store.commit('ToDoListAddItem', NewToDo)
-      }
+      this.$store.commit('ToDoListAddItem', NewToDo)
     },
-    SaveItem: function (SaveItem: any) {
-      if (((!SaveItem.text) && (SaveItem.time == 0)) || ((!SaveItem.text) || (SaveItem.time == 0))) {
-        eventBus.$emit('popupOpen', {
+    SaveItem (SaveItem: any) {
+      if (((!SaveItem.text) && (SaveItem.time === 0)) || ((!SaveItem.text) || (SaveItem.time === 0))) {
+        return eventBus.$emit('popupOpen', {
           typeMessage: {
             type: Text,
             value: 'alert'
@@ -67,11 +65,8 @@ export default Vue.extend({
             value: 'Заполните все поля!'
           }
         })
-        return
       }
-      else {
-        this.$store.commit('ToDoItemSave', SaveItem)
-      }
+      this.$store.commit('ToDoItemSave', SaveItem)
     }
   }
 })

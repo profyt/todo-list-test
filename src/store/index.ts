@@ -61,7 +61,7 @@ export default new Vuex.Store({
       
     },
     ToDoListDeleteItem: function (state, DeleteItem: any) {
-      state.items = Lodash.filter(state.items, function(o) { return o.id != DeleteItem.id; })
+      state.items = state.items.filter(item=> item.id!==DeleteItem.id)
     },
     ToDoItemStat: function (state, CompleteItem: any) {
       let date:Moment = moment(),
@@ -115,7 +115,9 @@ export default new Vuex.Store({
         let summTime:number = 0,
         startDay:Moment = moment().set({'hour': 10, 'minute': 0, 'second': 0}),
         endDay: Moment = moment().set({'hour': 18, 'minute': 0, 'second': 0})
-        state.items.forEach((item:any)=> {item.id === updatedItem.id?summTime += Number(updatedItem.time):summTime += Number(item.time)})
+        state.items.forEach((item:any)=> {
+          item.id === updatedItem.id?summTime += Number(updatedItem.time):summTime += Number(item.time)
+        })
         startDay.add( summTime , 'minutes')
         if (startDay.isBefore(endDay)){
           state.items.splice(index, 1, updatedItem)

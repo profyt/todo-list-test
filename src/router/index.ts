@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ToDoPage from '@/views/ToDoPage.vue'
 import AddItemPage from '@/views/AddItemPage.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -10,6 +11,5 @@ const routes = [
 ]
 export default new VueRouter({
   mode: 'history',
-  base: __dirname,
   routes
 })

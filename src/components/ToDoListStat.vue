@@ -1,8 +1,10 @@
 <template>
-  <div class="row to-do-stat">
-    <span class="to-do-stat__item badge badge-primary">Всего задач <span class="to-do-stat__item-badge badge badge-pill badge-light">{{SumOfItems}}</span></span>
-    <span class="to-do-stat__item badge badge-secondary">Не выполненных задач <span class="badge badge-pill badge-light">{{InCompleteItems}}</span></span>
-    <span class="to-do-stat__item badge badge-success">Выполненных задач <span class="badge badge-pill badge-light">{{CompleteItems}}</span></span>
+  <div class="container">
+    <div class="row to-do-stat">
+      <span class="to-do-stat__item badge badge-primary">Всего задач <span class="to-do-stat__item-badge badge badge-pill badge-light">{{SumOfItems}}</span></span>
+      <span class="to-do-stat__item badge badge-secondary">Не выполненных задач <span class="badge badge-pill badge-light">{{InCompleteItems}}</span></span>
+      <span class="to-do-stat__item badge badge-success">Выполненных задач <span class="badge badge-pill badge-light">{{CompleteItems}}</span></span>
+    </div>
   </div>
 </template>
 
@@ -16,13 +18,14 @@ export default Vue.extend({
 
   computed: {
     SumOfItems: function () {
-      return Lodash.size(this.newitems)
+      return this.newitems.length
     },
     InCompleteItems: function () {
-      return Lodash.size(Lodash.filter(this.newitems, ['stat', false]))
+      return this.newitems.filter((item:any) => !item.stat).length
+      
     },
     CompleteItems: function () {
-      return Lodash.size(Lodash.filter(this.newitems, ['stat', true]))
+      return this.newitems.filter((item:any) => item.stat).length
     }
   }
 })

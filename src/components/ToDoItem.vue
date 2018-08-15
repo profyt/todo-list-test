@@ -5,9 +5,9 @@
         {{item.text}}<span class="item_text-time">{{item.time}}</span>
       </div>
       <div class="input-group-append item-row__button-group">
-        <router-link class="btn btn-outline-secondary item-row__button_no-complete" :to="{ name: 'edit', params: { TaskId: item.id }}">Редактировать</router-link>
-        <button class="btn btn-outline-secondary item-row__button_no-complete" type="button" @click="ToDoItem_complete">Готово</button>
-        <button class="btn btn-outline-secondary item-row__button_delete" type="button" @click="ToDoItem_delete">Удалить задачу</button>
+        <router-link class="btn btn-outline-secondary item-row__button item-row__button--no-complete" :to="{ name: 'edit', params: { TaskId: item.id }}">Редактировать</router-link>
+        <button class="btn btn-outline-secondary item-row__button item-row__button--no-complete" type="button" @click="ToDoItem_complete">Готово</button>
+        <button class="btn btn-outline-secondary item-row__button item-row__button--delete" type="button" @click="ToDoItem_delete">Удалить задачу</button>
       </div>
     </div>
     <div  class="input-group item-row__wrap"  v-if="item.stat">
@@ -15,8 +15,8 @@
         {{item.text}}<span class="item_text-time">{{item.time}}</span>/<span class="item_text-time-result" :class="completeTimeClass">{{item.resultTime}}</span>
       </div>
       <div class="input-group-append item-row__button-group">
-        <button class="btn btn-outline-secondary item-row__button_no-complete" type="button" @click="ToDoItem_not_complete">Не готово</button>
-        <button class="btn btn-outline-secondary item-row__button_delete" type="button" @click="ToDoItem_delete">Удалить задачу</button>
+        <button class="btn btn-outline-secondary item-row__button item-row__button--no-complete" type="button" @click="ToDoItem_not_complete">Не готово</button>
+        <button class="btn btn-outline-secondary item-row__button item-row__button--delete" type="button" @click="ToDoItem_delete">Удалить задачу</button>
       </div>
     </div>
   </div>
@@ -38,9 +38,7 @@ export default Vue.extend({
       if (this.item.resultTime <= 0){
         return 'item_text-time-result--in-time'
       }
-      else{
-        return 'item_text-time-result--over-time'
-      }
+      return 'item_text-time-result--over-time'
     }
   },
   methods: {
@@ -71,7 +69,7 @@ export default Vue.extend({
     border: 1px solid #ced4da;
     box-shadow: 0px -8px 20px -5px rgba(0, 0, 0, 0.3) inset;
     &_complete{
-      @extend .item-row__button;
+      
       &:hover,&:focus{
         color: black;
         background: white;
@@ -79,8 +77,8 @@ export default Vue.extend({
         box-shadow: 0px 0px 20px 3px $green-color inset;
       }
     }
-    &_no-complete{
-      @extend .item-row__button;
+    &--no-complete{
+      
       &:hover,&:focus{
         color: black;
         background: white;
@@ -88,10 +86,10 @@ export default Vue.extend({
         box-shadow: 0px 0px 20px 3px gray inset;
       }
     }
-    &_delete{
-      @extend .item-row__button;
+    &--delete{
+      
       &:hover{
-        @extend .item-row__button;
+        
         color: black;
         background: white;
         border-color: red;
